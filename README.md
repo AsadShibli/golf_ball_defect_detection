@@ -19,8 +19,19 @@ To get started, you will need to install the necessary libraries for running the
 !pip install ultralytics==8.0.196
 !pip install supervision
 ```
-Ensure that the API key is added to your environment variables or replaced in the script directly.
 
+## Dataset
+The dataset was captured and manually annotated using Roboflow. To download the dataset for training, you'll need the Roboflow API key.
+
+```python
+from roboflow import Roboflow
+
+rf = Roboflow(api_key="YOUR_API_KEY")
+project = rf.workspace("sm-group").project("golf-ball-cover-defect-data")
+version = project.version(1)
+dataset = version.download("yolov8")
+```
+Ensure that the API key is added to your environment variables or replaced in the script directly.
 ## Training
 We use YOLOv8 for detecting defects on golf balls. The training was performed using the YOLOv8x model and a custom dataset downloaded from Roboflow.
 ```python
